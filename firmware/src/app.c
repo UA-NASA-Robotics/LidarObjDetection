@@ -31,13 +31,15 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include "system_definitions.h"
+#include "Definitions.h"
 #include "app.h"
 #include "uart_handler.h"
+#include "lidarCalibrate.h"
 #include "FastTransfer.h"
 #include "LidarDecoder.h"
 #include "timers.h"
 #include "lidarCalibrate.h"
+#include "Definitions.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -99,14 +101,34 @@ timer_t lidar_runtime;
 void APP_Initialize(void) {
     /* Place the App state machine in its initial state. */
     appData.state = APP_STATE_INIT;
-
+    DRV_TMR0_Start();
+    DRV_TMR1_Start();
+    DRV_OC0_Start();
     InitUARTModule(&LidarUart, UART_Lidar);
+    InitUARTModule(&LantronixUart, Lantronix);
+   // InitFastTransferModule(&LantronixFT, Lantronix, MY_ADDRESS, Send_put, Buffer_Get, Buffer_Size, Buffer_Peek);
+    setTimerInterval(&ms100,100);
+    LED1 = On;while(!timerDone(&ms100));
+    LED2 = On;while(!timerDone(&ms100));
+    LED3 = On;while(!timerDone(&ms100));
+    LED4 = On;while(!timerDone(&ms100));
+    LED5 = On;while(!timerDone(&ms100));
+    LED6 = On;while(!timerDone(&ms100));
+    LED7 = On;while(!timerDone(&ms100));
+    LED8 = On;while(!timerDone(&ms100));
+        LED1 = On;while(!timerDone(&ms100));
+    LED2 = Off;while(!timerDone(&ms100));
+    LED3 = Off;while(!timerDone(&ms100));
+    LED4 = Off;while(!timerDone(&ms100));
+    LED5 = Off;while(!timerDone(&ms100));
+    LED6 = Off;while(!timerDone(&ms100));
+    LED7 = Off;while(!timerDone(&ms100));
+    LED8 = Off;while(!timerDone(&ms100));
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */
 }
 
-#define MASTER
 
 /******************************************************************************
   Function:
@@ -125,11 +147,9 @@ void APP_Tasks(void) {
         case APP_STATE_INIT:
         {
 
-            if (appInitialized) {
                 DRV_OCO_Change_PulseWidth(1800);
-
-                appData.state = APP_STATE_STOP_LIDAR;
-            }
+                setTimerInterval(&secondTimer,1000);
+                appData.state = APP_STATE_LIDAR;
             break;
         }
 
@@ -144,6 +164,7 @@ void APP_Tasks(void) {
             DRV_OCO_Change_PulseWidth(0);
 
             //---------------------Wait a bit-------------------------
+            setTimerInterval(&spindown,1000);
             resetTimer(&spindown);
             while (!timerDone(&spindown));
 
@@ -153,7 +174,7 @@ void APP_Tasks(void) {
         case APP_STATE_CONFIGURATION_SETUP:
         {
 
-            sweepConfigSettings();
+           // sweepConfigSettings();
 
             //--------------Turn on motor--------------
             DRV_OCO_Change_PulseWidth(1800);
@@ -168,26 +189,28 @@ void APP_Tasks(void) {
         case APP_STATE_LIDAR:
         {
             resetTimer(&lidar_runtime);
+            int obj[4];
+            int i;
             while (appData.state == APP_STATE_LIDAR) {
                 if (timerDone(&secondTimer)) {
                     LED6 ^= 1;
+                    int num = runGroundObjectDetection(obj, sizeof(obj));
+                    for(i = 0; i < num; i++)
+                    {
+                        printf("obj%d: %d\n",i,obj[i]);
+                    }
+                    
                 }
                 decode_LidarData();
+                
+                
             }
 
             break;
         }
         case FASTTRANS_TEST:
         {
-            if (timerDone(&ms100)) {
-                ToSend(0, 0xFFFF, &OutGoing_DataTransBuff);
-                sendData(FastTransTestCounter, &OutGoing_DataTransBuff);
-
-
-                if (FastTransTestCounter > 10) {
-                    FastTransTestCounter = 0;
-                }
-            }
+            
             break;
         }
             /* TODO: implement your application state machine.*/

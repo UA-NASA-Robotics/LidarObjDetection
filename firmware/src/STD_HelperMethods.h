@@ -7,14 +7,15 @@
 
 #ifndef STD_HELPERMETHODS_H
 #define	STD_HELPERMETHODS_H
+#include "Definitions.h"
 
 bool IsParallel(double _Slope);
 double getSlope(unsigned short RightInc, unsigned short LeftInc, unsigned short RightMag,unsigned short LeftMag);
 bool isWithinTolerance(double _testVal, double target, double _delta);
 unsigned short trig_ABS(double _val);
-struct pointD PolarToCartesian(unsigned short angle, unsigned short mag);
-struct pointD PolarToCartesianTwo(unsigned short angle, unsigned short mag);
-unsigned short Calculate_PointDistance(struct pointD pointOne, struct pointD pointTwo);
+pointD PolarToCartesian(unsigned short angle, unsigned short mag);
+pointD PolarToCartesianTwo(unsigned short angle, unsigned short mag);
+unsigned short Calculate_PointDistance(pointD pointOne, pointD pointTwo);
 bool isWithinArea(int _angle, unsigned short _mag,unsigned short *MAGarray);
 double Dabs(double _Val);
 //double Buffer_Get(struct SlopeRingBuffer *_buff);

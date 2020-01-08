@@ -1,5 +1,6 @@
 #include "uart_Handler.h"
 
+#include "../../../../framework/driver/usart/drv_usart.h"
 unsigned int UART_buff_modulo_inc(const unsigned int value, const unsigned int modulus);
 void RXEventHandler(const SYS_MODULE_INDEX index);
 void TXEventHandler(const SYS_MODULE_INDEX index);
@@ -104,9 +105,8 @@ void InitTXEventHandler(UART_Object_t* _uartObj)
 {
     _TXEventHandlerUARTobjects[_uartObj->uartTXModule] = _uartObj;
     
-    DRV_USART_ByteTransmitCallbackSet(_uartObj->uartTXModule, TXEventHandler);
+    DRV_USART_ByteTransmitCallbackSet((SYS_MODULE_INDEX)(_uartObj->uartTXModule), (DRV_USART_BYTE_EVENT_HANDLER)TXEventHandler);
 }
-
 
 
 /**********************************************************************************
@@ -116,7 +116,6 @@ void InitTXEventHandler(UART_Object_t* _uartObj)
 //Sends the data in the uartObjects TX buffer (thus the buffer must have info to send)
 void Send_put(UART_Object_t* _TXobject, unsigned char _data)
 {
-   
     //Put the data into the RX buffer
     Buffer_Put(_TXobject->TxBuffer, _data);
     //use DRV_USART_TransmitBufferIsFull(Handle);
@@ -143,6 +142,7 @@ void RXEventHandler(const SYS_MODULE_INDEX index)
 
 void TXEventHandler(const SYS_MODULE_INDEX index)
 {
+    
     //Byte has finished transmitting
     if(Buffer_Size(_TXEventHandlerUARTobjects[index]->TxBuffer) > 0)
     {
@@ -161,15 +161,16 @@ void TXEventHandler(const SYS_MODULE_INDEX index)
 
 int Receive_available(UART_Object_t* _this)
 {
+   
     return Buffer_Size(_this->RxBuffer);
 }
-//this is need to use the prinf function
+//this is need to use the printf function
 void _mon_putc(char c)
 {
-    while(U2STAbits.UTXBF == 1)
+    while(U1STAbits.UTXBF == 1)
     {
         
     }
-    U2TXREG = c;    
+    U1TXREG = c;    
 }
 

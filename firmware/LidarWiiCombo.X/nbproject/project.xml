@@ -17,7 +17,6 @@
                 <sourceRootElem>..\src</sourceRootElem>
                 <sourceRootElem>..\src\default</sourceRootElem>
                 <sourceRootElem>..\src\system_config\default</sourceRootElem>
-                <sourceRootElem>C:\microchip\harmony\v2_02_00b\framework\driver</sourceRootElem>
                 <sourceRootElem>C:/microchip/harmony/v2_05_01</sourceRootElem>
                 <sourceRootElem>../..</sourceRootElem>
             </sourceRootList>

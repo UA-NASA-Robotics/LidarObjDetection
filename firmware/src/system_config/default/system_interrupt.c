@@ -28,7 +28,30 @@
     module "Tasks" functions to identify the instance of the module to maintain.
  *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
+/*******************************************************************************
+Copyright (c) 2011-2014 released Microchip Technology Inc.  All rights reserved.
 
+Microchip licenses to you the right to use, modify, copy and distribute
+Software only when embedded on a Microchip microcontroller or digital signal
+controller that is integrated into your product or third party product
+(pursuant to the sublicense terms in the accompanying license agreement).
+
+You should refer to the license agreement accompanying this Software for
+additional information regarding your rights and obligations.
+
+SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF
+MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE.
+IN NO EVENT SHALL MICROCHIP OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER
+CONTRACT, NEGLIGENCE, STRICT LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR
+OTHER LEGAL EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES
+INCLUDING BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR
+CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT OF
+SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
+(INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
+ *******************************************************************************/
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
@@ -48,64 +71,57 @@
 // *****************************************************************************
 // *****************************************************************************
 
-//set up to be a 10ms timer
-void __ISR(_TIMER_2_VECTOR, ipl6AUTO) IntHandlerDrvTmrInstance0(void)
-{
-//    TimerTickFlag = true;    
-//    TimerCounter+=10;
-    globalTimerTracker();
-    PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_2);
-    
-}
-
-//lantronix 
 void __ISR(_UART1_TX_VECTOR, ipl5AUTO) _IntHandlerDrvUsartTransmitInstance0(void)
 {
-    /* Clear up the interrupt flag */
-    SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_TRANSMIT);
+    DRV_USART_TasksTransmit(sysObj.drvUsart0);
 }
 void __ISR(_UART1_RX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartReceiveInstance0(void)
 {
     DRV_USART_TasksReceive(sysObj.drvUsart0);
-    //SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_RECEIVE);
+}
+void __ISR(_UART1_FAULT_VECTOR, ipl6AUTO) _IntHandlerDrvUsartErrorInstance0(void)
+{
+    DRV_USART_TasksError(sysObj.drvUsart0);
 }
 
+ 
+
+ 
+void __ISR(_UART6_TX_VECTOR, ipl0AUTO) _IntHandlerDrvUsartTransmitInstance1(void)
+{
+    DRV_USART_TasksTransmit(sysObj.drvUsart1);
+}
 //LIDAR RECIEVE
 void __ISR(_UART6_RX_VECTOR, ipl7AUTO) _IntHandlerDrvUsartReceiveInstance1(void)
 {
     DRV_USART_TasksReceive(sysObj.drvUsart1);
     //LED8 = OFF;
 }
-
- 
-void __ISR(_UART6_TX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartTransmitInstance1(void)
+void __ISR(_UART6_FAULT_VECTOR, ipl7AUTO) _IntHandlerDrvUsartErrorInstance1(void)
 {
-    /* Clear up the interrupt flag */
-    SYS_INT_SourceStatusClear(INT_SOURCE_USART_6_TRANSMIT);
-    //DRV_USART_TasksTransmit(sysObj.drvUsart3);
+    DRV_USART_TasksError(sysObj.drvUsart1);
 }
 
 //FastTransfer_1 Transmitter UART module
 void __ISR(_UART4_TX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartTransmitInstance2(void)
 {
-   SYS_INT_SourceStatusClear(INT_SOURCE_USART_4_TRANSMIT);
+    DRV_USART_TasksTransmit(sysObj.drvUsart2);
 }
-
 void __ISR(_UART4_RX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartReceiveInstance2(void)
 {
     DRV_USART_TasksReceive(sysObj.drvUsart2);
 }
-void __ISR(_UART4_FAULT_VECTOR, ipl0AUTO) _IntHandlerDrvUsartErrorInstance2(void)
+void __ISR(_UART4_FAULT_VECTOR, ipl6AUTO) _IntHandlerDrvUsartErrorInstance2(void)
 {
     DRV_USART_TasksError(sysObj.drvUsart2);
 } 
 
  
+
+ 
 void __ISR(_UART5_TX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartTransmitInstance3(void)
 {
-    /* Clear up the interrupt flag */
-    SYS_INT_SourceStatusClear(INT_SOURCE_USART_5_TRANSMIT);
-    //DRV_USART_TasksTransmit(sysObj.drvUsart3);
+    DRV_USART_TasksTransmit(sysObj.drvUsart3);
 }
 void __ISR(_UART5_RX_VECTOR, ipl0AUTO) _IntHandlerDrvUsartReceiveInstance3(void)
 {  
@@ -136,6 +152,14 @@ void __ISR(_UART3_FAULT_VECTOR, ipl1AUTO) _IntHandlerDrvUsartErrorInstance4(void
 
      
    
+ 
+ 
+
+void __ISR(_TIMER_2_VECTOR, ipl6AUTO) IntHandlerDrvTmrInstance0(void)
+{
+    globalTimerTracker();
+    PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_2);
+}
   void __ISR(_TIMER_4_VECTOR, ipl0AUTO) IntHandlerDrvTmrInstance1(void)
 {
     PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_4);

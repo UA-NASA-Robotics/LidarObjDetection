@@ -36,7 +36,7 @@
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
 #include "system/common/sys_module.h"   // SYS function prototypes
-#include "system_config/default/system_definitions.h"
+#include "Definitions.h"
 
 
 
@@ -51,8 +51,6 @@ int main ( void )
 {
     /* Initialize all MPLAB Harmony modules, including application(s). */
     SYS_Initialize ( NULL );
-    LeftSideDistance = LEFTSIDE_DISTANCE;
-    RightSideDistance = RIGHTSIDE_DISTANCE;
 
     while ( true )
     {

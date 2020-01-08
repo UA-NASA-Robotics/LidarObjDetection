@@ -160,18 +160,6 @@ void DRV_USART0_TasksTransmit(void)
         SYS_INT_SourceStatusClear(INT_SOURCE_USART_1_TRANSMIT);
     }
 }
-void DRV_USART0_TransmitInterruptEnable()
-{
-    SYS_INT_SourceEnable(INT_SOURCE_USART_1_TRANSMIT);
-}
-void DRV_USART0_TransmitInterruptDisable()
-{
-    SYS_INT_SourceDisable(INT_SOURCE_USART_1_TRANSMIT);
-}
-void DRV_USART3_TransmitInterruptEnable()
-{
-    SYS_INT_SourceEnable(INT_SOURCE_USART_5_TRANSMIT);
-}
 
 void DRV_USART0_TasksReceive(void)
 {

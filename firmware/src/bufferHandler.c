@@ -26,7 +26,7 @@ RingBuffer_t* createRingBuffer(RingBuffer_t* rBuff, unsigned int s)
     rBuff = malloc(sizeof(RingBuffer_t));
     rBuff->buf = malloc(sizeof(uint8_t) * s);
     
-    if(!rBuff){   
+    if(rBuff == 0x00){   
         printf("Failure to malloc Buffer of size %u + %u", (unsigned int)(sizeof(RingBuffer_t*)), (unsigned int)(s*sizeof(uint8_t*)));
         return NULL;
     }

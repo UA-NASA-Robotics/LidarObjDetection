@@ -9,9 +9,9 @@
 
   Description:
     This file contains source code necessary to initialize the system.  It
-    implements the "SYS_Initialize" function, defines the configuration bits, 
-    and allocates any necessary global system resources, such as the 
-    sysObj structure that contains the object handles to all the MPLAB Harmony 
+    implements the "SYS_Initialize" function, defines the configuration bits,
+    and allocates any necessary global system resources, such as the
+    sysObj structure that contains the object handles to all the MPLAB Harmony
     module objects in the system.
  *******************************************************************************/
 
@@ -45,11 +45,10 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-#include <stdbool.h>
+
 #include "system_config.h"
 #include "system_definitions.h"
-#include "uart_handler.h"
-#include "FastTransfer.h"
+
 
 // ****************************************************************************
 // ****************************************************************************
@@ -94,10 +93,10 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config FDMTEN =     OFF
 /*** DEVCFG2 ***/
 
-#pragma config FPLLIDIV =   DIV_1
-#pragma config FPLLRNG =    RANGE_13_26_MHZ
+#pragma config FPLLIDIV =   DIV_3
+#pragma config FPLLRNG =    RANGE_5_10_MHZ
 #pragma config FPLLICLK =   PLL_POSC
-#pragma config FPLLMULT =   MUL_20
+#pragma config FPLLMULT =   MUL_50
 #pragma config FPLLODIV =   DIV_2
 #pragma config UPLLFSEL =   FREQ_24MHZ
 /*** DEVCFG3 ***/
@@ -121,11 +120,109 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
-// <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
-// </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_USART Initialization Data">
+
+const DRV_USART_INIT drvUsart0InitData =
+{
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX0,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX0, 
+    .mode = DRV_USART_OPER_MODE_IDX0,
+    .flags = DRV_USART_INIT_FLAGS_IDX0,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX0,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX0,
+    .baud = DRV_USART_BAUD_RATE_IDX0,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX0,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX0,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX0,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX0,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX0,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX0,    
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX0,    
+};
+
+const DRV_USART_INIT drvUsart1InitData =
+{
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX1,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX1, 
+    .mode = DRV_USART_OPER_MODE_IDX1,
+    .flags = DRV_USART_INIT_FLAGS_IDX1,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX1,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX1,
+    .baud = DRV_USART_BAUD_RATE_IDX1,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX1,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX1,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX1,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX1,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX1,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX1,
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive= DRV_USART_RCV_INT_SRC_IDX1,
+};
+
+const DRV_USART_INIT drvUsart2InitData =
+{
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX2,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX2, 
+    .mode = DRV_USART_OPER_MODE_IDX2,
+    .flags = DRV_USART_INIT_FLAGS_IDX2,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX2,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX2,
+    .baud = DRV_USART_BAUD_RATE_IDX2,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX2,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX2,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX2,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX2,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX2,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX2,
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX2,
+};
+
+const DRV_USART_INIT drvUsart3InitData =
+{
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX3,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX3, 
+    .mode = DRV_USART_OPER_MODE_IDX3,
+    .flags = DRV_USART_INIT_FLAGS_IDX3,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX3,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX3,
+    .baud = DRV_USART_BAUD_RATE_IDX3,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX3,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX3,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX3,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX3,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX3,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX3,
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX3,
+};
+
+const DRV_USART_INIT drvUsart4InitData =
+{
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX4,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX4, 
+    .mode = DRV_USART_OPER_MODE_IDX4,
+    .flags = DRV_USART_INIT_FLAGS_IDX4,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX4,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX4,
+    .baud = DRV_USART_BAUD_RATE_IDX4,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX4,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX4,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX4,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX4,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX4,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX4,
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX4,
+};
 // </editor-fold>
 
 // *****************************************************************************
@@ -182,18 +279,18 @@ void SYS_Initialize ( void* data )
     /*Initialize TMR1 */
     DRV_TMR1_Initialize();
  
-    sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)NULL);
-    sysObj.drvUsart1 = DRV_USART_Initialize(DRV_USART_INDEX_1, (SYS_MODULE_INIT *)NULL);
-    sysObj.drvUsart2 = DRV_USART_Initialize(DRV_USART_INDEX_2, (SYS_MODULE_INIT *)NULL);
-    sysObj.drvUsart3 = DRV_USART_Initialize(DRV_USART_INDEX_3, (SYS_MODULE_INIT *)NULL);
-    sysObj.drvUsart4 = DRV_USART_Initialize(DRV_USART_INDEX_4, (SYS_MODULE_INIT *)NULL);
+     sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
+    sysObj.drvUsart1 = DRV_USART_Initialize(DRV_USART_INDEX_1, (SYS_MODULE_INIT *)&drvUsart1InitData);
+    sysObj.drvUsart2 = DRV_USART_Initialize(DRV_USART_INDEX_2, (SYS_MODULE_INIT *)&drvUsart2InitData);
+    sysObj.drvUsart3 = DRV_USART_Initialize(DRV_USART_INDEX_3, (SYS_MODULE_INIT *)&drvUsart3InitData);
+    sysObj.drvUsart4 = DRV_USART_Initialize(DRV_USART_INDEX_4, (SYS_MODULE_INIT *)&drvUsart4InitData);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INT_PRIORITY_LEVEL5);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1_TX, INT_SUBPRIORITY_LEVEL2);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_RX, INT_PRIORITY_LEVEL6);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1_RX, INT_SUBPRIORITY_LEVEL2);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_FAULT, INT_PRIORITY_LEVEL6);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1_FAULT, INT_SUBPRIORITY_LEVEL2);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART6_TX, INT_SUBPRIORITY_LEVEL2);
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART6_TX, INT_DISABLE_INTERRUPT);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART6_TX, INT_SUBPRIORITY_LEVEL3);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART6_RX, INT_PRIORITY_LEVEL7);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART6_RX, INT_SUBPRIORITY_LEVEL3);
@@ -227,16 +324,9 @@ void SYS_Initialize ( void* data )
 
     /* Enable Global Interrupts */
     SYS_INT_Enable();
-    
+
     /* Initialize the Application */
     APP_Initialize();
-    DRV_TMR0_Start();   //This timer is blinking the light
-    DRV_TMR1_Start();   //this is timer4 for the output compare
-    
-    DRV_OC0_Start();    //Start the pwm for the lidar
-   
-    UART_buff_init(&input_buffer);
-    
 }
 
 

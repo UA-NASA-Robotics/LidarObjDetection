@@ -44,10 +44,8 @@ typedef struct
                                                                                                                 
 }FastTransfer_t;
 
-//uint8_t MasterFTRXarray[BUFFER_SIZE];
-FastTransfer_t MasterFT;
-//uint8_t GyroFTRXarray[BUFFER_SIZE];
-FastTransfer_t GyroFT;
+FastTransfer_t LantronixFT;
+
 
 //#define the _uartModules so that it will be easier to configure fastTransfer
 //names are references to the board file
