@@ -133,4 +133,5 @@ build/default/production/_ext/1360937237/app.o:  \
 ../src/timers.h  \
  ../src/FastTransfer.h  \
 ../src/uart_Handler.h  \
-../src/LidarDecoder.h 
+../src/LidarDecoder.h  \
+ ../src/MPU6050.h 

@@ -137,7 +137,10 @@ typedef struct
 #define On 0
 #define Off 1
 
-   
+typedef struct{
+    int x;
+    int y;
+}point_t;
     unsigned short LidarSpeed;
 
 

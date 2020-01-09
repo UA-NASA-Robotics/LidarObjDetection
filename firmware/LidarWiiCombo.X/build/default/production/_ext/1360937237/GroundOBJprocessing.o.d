@@ -130,4 +130,5 @@ build/default/production/_ext/1360937237/GroundOBJprocessing.o:  \
  ../src/CAN_Handler/GlobalCAN_IDs.h  \
 ../src/GroundOBJprocessing.h  \
  ../src/timers.h  \
-../src/app.h 
+../src/app.h  \
+../src/MPU6050.h 

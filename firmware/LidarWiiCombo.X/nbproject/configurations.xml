@@ -15,10 +15,16 @@
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
               <logicalFolder name="f1" displayName="driver" projectFiles="true">
-                <logicalFolder name="f1" displayName="oc" projectFiles="true">
+                <logicalFolder name="f1" displayName="can" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/can/drv_can_static.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="i2c" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/i2c/drv_i2c_static_buffer_model.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f3" displayName="oc" projectFiles="true">
                   <itemPath>../src/system_config/default/framework/driver/oc/drv_oc_static.h</itemPath>
                 </logicalFolder>
-                <logicalFolder name="f2" displayName="tmr" projectFiles="true">
+                <logicalFolder name="f4" displayName="tmr" projectFiles="true">
                   <itemPath>../src/system_config/default/framework/driver/tmr/drv_tmr_static.h</itemPath>
                 </logicalFolder>
               </logicalFolder>
@@ -44,13 +50,27 @@
         <itemPath>../src/uart_Handler.h</itemPath>
         <itemPath>../src/bufferHandler.h</itemPath>
         <itemPath>../src/Definitions.h</itemPath>
+        <itemPath>../src/MPU6050.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
-          <logicalFolder name="f1" displayName="oc" projectFiles="true">
+          <logicalFolder name="f1" displayName="can" projectFiles="true">
+            <itemPath>../../../../framework/driver/can/drv_can.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f2" displayName="i2c" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../framework/driver/i2c/src/drv_i2c_local.h</itemPath>
+              <itemPath>../../../../framework/driver/i2c/src/drv_i2c_variant_mapping.h</itemPath>
+            </logicalFolder>
+            <itemPath>../../../../framework/driver/i2c/drv_i2c.h</itemPath>
+            <itemPath>../../../../framework/driver/i2c/drv_i2c_device_pic32m.h</itemPath>
+            <itemPath>../../../../framework/driver/i2c/drv_i2c_compatibility.h</itemPath>
+            <itemPath>../../../../framework/driver/i2c/drv_i2c_mapping.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="oc" projectFiles="true">
             <itemPath>../../../../framework/driver/oc/drv_oc.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="tmr" projectFiles="true">
+          <logicalFolder name="f4" displayName="tmr" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../../../../framework/driver/tmr/src/drv_tmr_variant_mapping.h</itemPath>
             </logicalFolder>
@@ -59,7 +79,7 @@
             <itemPath>../../../../framework/driver/tmr/drv_tmr_compatibility.h</itemPath>
             <itemPath>../../../../framework/driver/tmr/tmr_definitions_pic32m.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="usart" projectFiles="true">
+          <logicalFolder name="f5" displayName="usart" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../../../../framework/driver/usart/src/drv_usart_variant_mapping.h</itemPath>
               <itemPath>../../../../framework/driver/usart/src/drv_usart_local.h</itemPath>
@@ -126,13 +146,25 @@
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
               <logicalFolder name="f1" displayName="driver" projectFiles="true">
-                <logicalFolder name="f1" displayName="oc" projectFiles="true">
+                <logicalFolder name="f1" displayName="can" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/can/src/drv_can_mapping.c</itemPath>
+                    <itemPath>../src/system_config/default/framework/driver/can/src/drv_can_static.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="i2c" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/i2c/src/drv_i2c_static_buffer_model.c</itemPath>
+                    <itemPath>../src/system_config/default/framework/driver/i2c/src/drv_i2c_mapping.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
+                <logicalFolder name="f3" displayName="oc" projectFiles="true">
                   <logicalFolder name="f1" displayName="src" projectFiles="true">
                     <itemPath>../src/system_config/default/framework/driver/oc/src/drv_oc_mapping.c</itemPath>
                     <itemPath>../src/system_config/default/framework/driver/oc/src/drv_oc_static.c</itemPath>
                   </logicalFolder>
                 </logicalFolder>
-                <logicalFolder name="f2" displayName="tmr" projectFiles="true">
+                <logicalFolder name="f4" displayName="tmr" projectFiles="true">
                   <logicalFolder name="f1" displayName="src" projectFiles="true">
                     <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_static.c</itemPath>
                     <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_mapping.c</itemPath>
@@ -175,6 +207,7 @@
         <itemPath>../src/uart_Handler.c</itemPath>
         <itemPath>../src/timers.c</itemPath>
         <itemPath>../src/bufferHandler.c</itemPath>
+        <itemPath>../src/MPU6050.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
@@ -357,7 +390,7 @@
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
         <property key="make-warnings-into-errors" value="false"/>
-        <property key="optimization-level" value=""/>
+        <property key="optimization-level" value="-O1"/>
         <property key="place-data-into-section" value="false"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>

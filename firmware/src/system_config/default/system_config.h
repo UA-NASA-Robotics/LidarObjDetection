@@ -83,10 +83,10 @@ extern "C" {
 */
 #define SYS_CLK_FREQ                        200000000ul
 #define SYS_CLK_BUS_PERIPHERAL_1            66666666ul
-#define SYS_CLK_BUS_PERIPHERAL_2            50000000ul
+#define SYS_CLK_BUS_PERIPHERAL_2            25000000ul
 #define SYS_CLK_BUS_PERIPHERAL_3            50000000ul
 #define SYS_CLK_BUS_PERIPHERAL_4            66666666ul
-#define SYS_CLK_BUS_PERIPHERAL_5            66666666ul
+#define SYS_CLK_BUS_PERIPHERAL_5            50000000ul
 #define SYS_CLK_BUS_PERIPHERAL_7            200000000ul
 #define SYS_CLK_BUS_PERIPHERAL_8            66666666ul
 #define SYS_CLK_CONFIG_PRIMARY_XTAL         24000000ul
@@ -150,6 +150,9 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+#define DRV_CAN_DRIVER_MODE_STATIC 
+#define DRV_I2C_INTERRUPT_MODE                    		true
+
 #define DRV_OC_DRIVER_MODE_STATIC 
 /*** Timer Driver Configuration ***/
 #define DRV_TMR_INTERRUPT_MODE             true
@@ -190,7 +193,7 @@ extern "C" {
 #define DRV_USART_BUFFER_QUEUE_SUPPORT              false
 
 #define DRV_USART_CLIENTS_NUMBER                    1
-#define DRV_USART_INSTANCES_NUMBER                  5
+#define DRV_USART_INSTANCES_NUMBER                  2
 
 #define DRV_USART_PERIPHERAL_ID_IDX0                USART_ID_1
 #define DRV_USART_OPER_MODE_IDX0                    DRV_USART_OPERATION_MODE_NORMAL
@@ -199,7 +202,7 @@ extern "C" {
 #define DRV_USART_INIT_FLAG_AUTO_BAUD_IDX0          false
 #define DRV_USART_INIT_FLAG_STOP_IN_IDLE_IDX0       false
 #define DRV_USART_INIT_FLAGS_IDX0                   0
-#define DRV_USART_BRG_CLOCK_IDX0                    50000000
+#define DRV_USART_BRG_CLOCK_IDX0                    25000000
 #define DRV_USART_BAUD_RATE_IDX0                    115200
 #define DRV_USART_LINE_CNTRL_IDX0                   DRV_USART_LINE_CONTROL_8NONE1
 #define DRV_USART_HANDSHAKE_MODE_IDX0               DRV_USART_HANDSHAKE_NONE
@@ -227,7 +230,7 @@ extern "C" {
 #define DRV_USART_INIT_FLAG_AUTO_BAUD_IDX1          false
 #define DRV_USART_INIT_FLAG_STOP_IN_IDLE_IDX1       false
 #define DRV_USART_INIT_FLAGS_IDX1                   0
-#define DRV_USART_BRG_CLOCK_IDX1                    50000000
+#define DRV_USART_BRG_CLOCK_IDX1                    25000000
 #define DRV_USART_BAUD_RATE_IDX1                    115200
 #define DRV_USART_LINE_CNTRL_IDX1                   DRV_USART_LINE_CONTROL_8NONE1
 #define DRV_USART_HANDSHAKE_MODE_IDX1               DRV_USART_HANDSHAKE_NONE
@@ -247,88 +250,6 @@ extern "C" {
 
 
 #define DRV_USART_POWER_STATE_IDX1                  SYS_MODULE_POWER_RUN_FULL
-
-#define DRV_USART_PERIPHERAL_ID_IDX2                USART_ID_4
-#define DRV_USART_OPER_MODE_IDX2                    DRV_USART_OPERATION_MODE_NORMAL
-#define DRV_USART_OPER_MODE_DATA_IDX2               
-#define DRV_USART_INIT_FLAG_WAKE_ON_START_IDX2      false
-#define DRV_USART_INIT_FLAG_AUTO_BAUD_IDX2          false
-#define DRV_USART_INIT_FLAG_STOP_IN_IDLE_IDX2       false
-#define DRV_USART_INIT_FLAGS_IDX2                   0
-#define DRV_USART_BRG_CLOCK_IDX2                    50000000
-#define DRV_USART_BAUD_RATE_IDX2                    115200
-#define DRV_USART_LINE_CNTRL_IDX2                   DRV_USART_LINE_CONTROL_8NONE1
-#define DRV_USART_HANDSHAKE_MODE_IDX2               DRV_USART_HANDSHAKE_NONE
-#define DRV_USART_LINES_ENABLE_IDX2                 USART_ENABLE_TX_RX_USED
-#define DRV_USART_XMIT_INT_SRC_IDX2                 INT_SOURCE_USART_4_TRANSMIT
-#define DRV_USART_RCV_INT_SRC_IDX2                  INT_SOURCE_USART_4_RECEIVE
-#define DRV_USART_ERR_INT_SRC_IDX2                  INT_SOURCE_USART_4_ERROR
-#define DRV_USART_XMIT_INT_PRIORITY_IDX2            INT_PRIORITY_LEVEL6
-#define DRV_USART_XMIT_INT_SUB_PRIORITY_IDX2        INT_SUBPRIORITY_LEVEL2
-#define DRV_USART_RCV_INT_VECTOR_IDX2               INT_VECTOR_UART4_RX
-#define DRV_USART_RCV_INT_PRIORITY_IDX2             INT_PRIORITY_LEVEL6
-#define DRV_USART_RCV_INT_SUB_PRIORITY_IDX2         INT_SUBPRIORITY_LEVEL2
-#define DRV_USART_ERR_INT_VECTOR_IDX2               INT_VECTOR_UART4_FAULT
-#define DRV_USART_ERR_INT_PRIORITY_IDX2             INT_PRIORITY_LEVEL6
-#define DRV_USART_ERR_INT_SUB_PRIORITY_IDX2         INT_SUBPRIORITY_LEVEL2
-
-
-#define DRV_USART_POWER_STATE_IDX2                  SYS_MODULE_POWER_RUN_FULL
-
-#define DRV_USART_PERIPHERAL_ID_IDX3                USART_ID_5
-#define DRV_USART_OPER_MODE_IDX3                    DRV_USART_OPERATION_MODE_NORMAL
-#define DRV_USART_OPER_MODE_DATA_IDX3               
-#define DRV_USART_INIT_FLAG_WAKE_ON_START_IDX3      false
-#define DRV_USART_INIT_FLAG_AUTO_BAUD_IDX3          false
-#define DRV_USART_INIT_FLAG_STOP_IN_IDLE_IDX3       false
-#define DRV_USART_INIT_FLAGS_IDX3                   0
-#define DRV_USART_BRG_CLOCK_IDX3                    50000000
-#define DRV_USART_BAUD_RATE_IDX3                    115200
-#define DRV_USART_LINE_CNTRL_IDX3                   DRV_USART_LINE_CONTROL_8NONE1
-#define DRV_USART_HANDSHAKE_MODE_IDX3               DRV_USART_HANDSHAKE_NONE
-#define DRV_USART_LINES_ENABLE_IDX3                 USART_ENABLE_TX_RX_USED
-#define DRV_USART_XMIT_INT_SRC_IDX3                 INT_SOURCE_USART_5_TRANSMIT
-#define DRV_USART_RCV_INT_SRC_IDX3                  INT_SOURCE_USART_5_RECEIVE
-#define DRV_USART_ERR_INT_SRC_IDX3                  INT_SOURCE_USART_5_ERROR
-#define DRV_USART_XMIT_INT_VECTOR_IDX3              INT_VECTOR_UART5_TX
-#define DRV_USART_XMIT_INT_PRIORITY_IDX3            INT_PRIORITY_LEVEL6
-#define DRV_USART_XMIT_INT_SUB_PRIORITY_IDX3        INT_SUBPRIORITY_LEVEL1
-#define DRV_USART_RCV_INT_VECTOR_IDX3               INT_VECTOR_UART5_RX
-#define DRV_USART_RCV_INT_PRIORITY_IDX3             INT_DISABLE_INTERRUPT
-#define DRV_USART_RCV_INT_SUB_PRIORITY_IDX3         INT_SUBPRIORITY_LEVEL0
-#define DRV_USART_ERR_INT_VECTOR_IDX3               INT_VECTOR_UART5_FAULT
-#define DRV_USART_ERR_INT_PRIORITY_IDX3             INT_DISABLE_INTERRUPT
-#define DRV_USART_ERR_INT_SUB_PRIORITY_IDX3         INT_SUBPRIORITY_LEVEL0
-
-
-#define DRV_USART_POWER_STATE_IDX3                  SYS_MODULE_POWER_RUN_FULL
-
-#define DRV_USART_PERIPHERAL_ID_IDX4                USART_ID_3
-#define DRV_USART_OPER_MODE_IDX4                    DRV_USART_OPERATION_MODE_NORMAL
-#define DRV_USART_OPER_MODE_DATA_IDX4               
-#define DRV_USART_INIT_FLAG_WAKE_ON_START_IDX4      false
-#define DRV_USART_INIT_FLAG_AUTO_BAUD_IDX4          false
-#define DRV_USART_INIT_FLAG_STOP_IN_IDLE_IDX4       false
-#define DRV_USART_INIT_FLAGS_IDX4                   0
-#define DRV_USART_BRG_CLOCK_IDX4                    50000000
-#define DRV_USART_BAUD_RATE_IDX4                    115200
-#define DRV_USART_LINE_CNTRL_IDX4                   DRV_USART_LINE_CONTROL_8NONE1
-#define DRV_USART_HANDSHAKE_MODE_IDX4               DRV_USART_HANDSHAKE_NONE
-#define DRV_USART_LINES_ENABLE_IDX4                 USART_ENABLE_TX_RX_USED
-#define DRV_USART_XMIT_INT_SRC_IDX4                 INT_SOURCE_USART_3_TRANSMIT
-#define DRV_USART_RCV_INT_SRC_IDX4                  INT_SOURCE_USART_3_RECEIVE
-#define DRV_USART_ERR_INT_SRC_IDX4                  INT_SOURCE_USART_3_ERROR
-#define DRV_USART_XMIT_INT_PRIORITY_IDX4            INT_PRIORITY_LEVEL5
-#define DRV_USART_XMIT_INT_SUB_PRIORITY_IDX4        INT_SUBPRIORITY_LEVEL0
-#define DRV_USART_RCV_INT_VECTOR_IDX4               INT_VECTOR_UART3_RX
-#define DRV_USART_RCV_INT_PRIORITY_IDX4             INT_PRIORITY_LEVEL1
-#define DRV_USART_RCV_INT_SUB_PRIORITY_IDX4         INT_SUBPRIORITY_LEVEL0
-#define DRV_USART_ERR_INT_VECTOR_IDX4               INT_VECTOR_UART3_FAULT
-#define DRV_USART_ERR_INT_PRIORITY_IDX4             INT_PRIORITY_LEVEL1
-#define DRV_USART_ERR_INT_SUB_PRIORITY_IDX4         INT_SUBPRIORITY_LEVEL0
-
-
-#define DRV_USART_POWER_STATE_IDX4                  SYS_MODULE_POWER_RUN_FULL
 
 
 // *****************************************************************************

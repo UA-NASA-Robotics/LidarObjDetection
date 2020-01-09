@@ -49,12 +49,20 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>
 #include "system/common/sys_common.h"
 #include "system/common/sys_module.h"
-#include "driver/oc/drv_oc.h" 
+#include "driver/can/drv_can.h" 
+#include "driver/i2c/drv_i2c.h"
+         
+     
+#include "framework/driver/i2c/drv_i2c_static_buffer_model.h"
+     
+ 
+ #include "driver/oc/drv_oc.h" 
 #include "system/devcon/sys_devcon.h"
 #include "system/clk/sys_clk.h"
 #include "system/int/sys_int.h"
 #include "driver/tmr/drv_tmr_static.h"
 #include "peripheral/int/plib_int.h"
+#include "driver/can/drv_can_static.h"
 #include "driver/usart/drv_usart.h"
 #include "system/ports/sys_ports.h"
 #include "app.h"
@@ -96,9 +104,6 @@ typedef struct
 
     SYS_MODULE_OBJ  drvUsart0;
     SYS_MODULE_OBJ  drvUsart1;
-    SYS_MODULE_OBJ  drvUsart2;
-    SYS_MODULE_OBJ  drvUsart3;
-    SYS_MODULE_OBJ  drvUsart4;
 
 } SYSTEM_OBJECTS;
 

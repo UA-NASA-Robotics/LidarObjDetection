@@ -120,6 +120,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
+// </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_USART Initialization Data">
@@ -162,66 +164,6 @@ const DRV_USART_INIT drvUsart1InitData =
     .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX1,
     .dmaChannelReceive = DMA_CHANNEL_NONE,
     .dmaInterruptReceive= DRV_USART_RCV_INT_SRC_IDX1,
-};
-
-const DRV_USART_INIT drvUsart2InitData =
-{
-    .moduleInit.value = DRV_USART_POWER_STATE_IDX2,
-    .usartID = DRV_USART_PERIPHERAL_ID_IDX2, 
-    .mode = DRV_USART_OPER_MODE_IDX2,
-    .flags = DRV_USART_INIT_FLAGS_IDX2,
-    .brgClock = DRV_USART_BRG_CLOCK_IDX2,
-    .lineControl = DRV_USART_LINE_CNTRL_IDX2,
-    .baud = DRV_USART_BAUD_RATE_IDX2,
-    .handshake = DRV_USART_HANDSHAKE_MODE_IDX2,
-    .linesEnable = DRV_USART_LINES_ENABLE_IDX2,
-    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX2,
-    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX2,
-    .interruptError = DRV_USART_ERR_INT_SRC_IDX2,
-    .dmaChannelTransmit = DMA_CHANNEL_NONE,
-    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX2,
-    .dmaChannelReceive = DMA_CHANNEL_NONE,
-    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX2,
-};
-
-const DRV_USART_INIT drvUsart3InitData =
-{
-    .moduleInit.value = DRV_USART_POWER_STATE_IDX3,
-    .usartID = DRV_USART_PERIPHERAL_ID_IDX3, 
-    .mode = DRV_USART_OPER_MODE_IDX3,
-    .flags = DRV_USART_INIT_FLAGS_IDX3,
-    .brgClock = DRV_USART_BRG_CLOCK_IDX3,
-    .lineControl = DRV_USART_LINE_CNTRL_IDX3,
-    .baud = DRV_USART_BAUD_RATE_IDX3,
-    .handshake = DRV_USART_HANDSHAKE_MODE_IDX3,
-    .linesEnable = DRV_USART_LINES_ENABLE_IDX3,
-    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX3,
-    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX3,
-    .interruptError = DRV_USART_ERR_INT_SRC_IDX3,
-    .dmaChannelTransmit = DMA_CHANNEL_NONE,
-    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX3,
-    .dmaChannelReceive = DMA_CHANNEL_NONE,
-    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX3,
-};
-
-const DRV_USART_INIT drvUsart4InitData =
-{
-    .moduleInit.value = DRV_USART_POWER_STATE_IDX4,
-    .usartID = DRV_USART_PERIPHERAL_ID_IDX4, 
-    .mode = DRV_USART_OPER_MODE_IDX4,
-    .flags = DRV_USART_INIT_FLAGS_IDX4,
-    .brgClock = DRV_USART_BRG_CLOCK_IDX4,
-    .lineControl = DRV_USART_LINE_CNTRL_IDX4,
-    .baud = DRV_USART_BAUD_RATE_IDX4,
-    .handshake = DRV_USART_HANDSHAKE_MODE_IDX4,
-    .linesEnable = DRV_USART_LINES_ENABLE_IDX4,
-    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX4,
-    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX4,
-    .interruptError = DRV_USART_ERR_INT_SRC_IDX4,
-    .dmaChannelTransmit = DMA_CHANNEL_NONE,
-    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX4,
-    .dmaChannelReceive = DMA_CHANNEL_NONE,
-    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX4,
 };
 // </editor-fold>
 
@@ -272,6 +214,11 @@ void SYS_Initialize ( void* data )
     SYS_PORTS_Initialize();
 
     /* Initialize Drivers */
+    DRV_I2C0_Initialize();
+
+    /* Initialize CAN Driver 0 */
+    DRV_CAN0_Initialize();
+
     /* Initialize the OC Driver */
     DRV_OC0_Initialize();
     /*Initialize TMR0 */
@@ -281,9 +228,6 @@ void SYS_Initialize ( void* data )
  
      sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
     sysObj.drvUsart1 = DRV_USART_Initialize(DRV_USART_INDEX_1, (SYS_MODULE_INIT *)&drvUsart1InitData);
-    sysObj.drvUsart2 = DRV_USART_Initialize(DRV_USART_INDEX_2, (SYS_MODULE_INIT *)&drvUsart2InitData);
-    sysObj.drvUsart3 = DRV_USART_Initialize(DRV_USART_INDEX_3, (SYS_MODULE_INIT *)&drvUsart3InitData);
-    sysObj.drvUsart4 = DRV_USART_Initialize(DRV_USART_INDEX_4, (SYS_MODULE_INIT *)&drvUsart4InitData);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_TX, INT_PRIORITY_LEVEL5);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1_TX, INT_SUBPRIORITY_LEVEL2);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1_RX, INT_PRIORITY_LEVEL6);
@@ -296,24 +240,6 @@ void SYS_Initialize ( void* data )
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART6_RX, INT_SUBPRIORITY_LEVEL3);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART6_FAULT, INT_PRIORITY_LEVEL7);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART6_FAULT, INT_SUBPRIORITY_LEVEL3);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART4_TX, INT_PRIORITY_LEVEL6);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART4_TX, INT_SUBPRIORITY_LEVEL2);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART4_RX, INT_PRIORITY_LEVEL6);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART4_RX, INT_SUBPRIORITY_LEVEL2);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART4_FAULT, INT_PRIORITY_LEVEL6);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART4_FAULT, INT_SUBPRIORITY_LEVEL2);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART5_TX, INT_PRIORITY_LEVEL6);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART5_TX, INT_SUBPRIORITY_LEVEL1);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART5_RX, INT_DISABLE_INTERRUPT);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART5_RX, INT_SUBPRIORITY_LEVEL0);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART5_FAULT, INT_DISABLE_INTERRUPT);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART5_FAULT, INT_SUBPRIORITY_LEVEL0);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART3_TX, INT_PRIORITY_LEVEL5);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART3_TX, INT_SUBPRIORITY_LEVEL0);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART3_RX, INT_PRIORITY_LEVEL1);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART3_RX, INT_SUBPRIORITY_LEVEL0);
-    SYS_INT_VectorPrioritySet(INT_VECTOR_UART3_FAULT, INT_PRIORITY_LEVEL1);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART3_FAULT, INT_SUBPRIORITY_LEVEL0);
 
     /* Initialize System Services */
 

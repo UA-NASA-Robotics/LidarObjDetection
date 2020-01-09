@@ -5,6 +5,7 @@
 #include "Definitions.h"
 #include "GroundOBJprocessing.h"
 #include "timers.h"
+#include "MPU6050.h"
 
 #define REAL double
 
@@ -79,7 +80,7 @@ int linreg(int n, const REAL x[], const REAL y[], REAL* m, REAL* b, REAL* r) {
 REAL m, b, r;
 int x;
 
-int runGroundObjectDetection(int *_objLoc, int _maxObjCount) {
+int runGroundObjectDetection(point_t *_objLoc, int _maxObjCount) {
 
     int i;
     unsigned short objCount = 0;
@@ -90,9 +91,10 @@ int runGroundObjectDetection(int *_objLoc, int _maxObjCount) {
        // printf("Range %d: %f \n", i, ranges[i - MIN_ANGLE]);
 
     }
-
-
     linreg(MAX_ANGLE - MIN_ANGLE, xVal, ranges, &m, &b, &r);
+    float angle = getPitch();
+    float distFromBase =(((double)90.0*m)+b)*cos (fabs(angle));
+    //printf("res: %f\tang: %.2f\tdis: %f\n",(((double)90.0*m)+b), angle*RAD_TO_DEGREE, distFromBase);
     double maxVal = 0, maxAng = 0;
     int startAng = 0;
     int objCenter;
@@ -105,25 +107,26 @@ int runGroundObjectDetection(int *_objLoc, int _maxObjCount) {
             /* Finding the edge of the object */
             if (startAng == 0) {
                 startAng = (int) maxAng;
-                //printf("start; %d\n", startAng);
+                printf("start; %d\n", startAng);
             }
         } else {
             /* found the other side of the object! */
             if (startAng != 0) {
                 objCenter = ((x - 1) + startAng) / 2;
-                //printf("end: %d \ncenter: %d\n", x - 1, objCenter);
+                //printf("end: %d\ncenter: %d\n", x - 1, objCenter);
+                printf("end: %d \n", x - 1);
                 startAng = 0;
                 if( objCount <_maxObjCount ){
-                    _objLoc[objCount] = objCenter;
+                    //printf("width: %d\n", Calculate_PointDistance((pointD) {(double)x,(((double)x*m) + b)}, (pointD){(double) startAng ,(((double)startAng * m) + b)}) );
+                    _objLoc[objCount].y = distFromBase;
+                    _objLoc[objCount].x = (((double)abs(objCenter-90)*m)+b)*sin((double)(objCenter-90)*DEGREE_TO_RAD);
+                    //printf("xLoc: %f\n", xloc);
                     objCount++;
                 }
             }
         }
     }
-    
     return objCount;
-    
-
 }
 
 void Generate_GroundLookUpTable() {

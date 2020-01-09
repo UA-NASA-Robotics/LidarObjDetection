@@ -65,12 +65,41 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system_definitions.h"
 #include "../src/uart_handler.h"
 #include "FastTransfer.h"
+    #include "../../CAN_Handler/CAN.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: System Interrupt Vector Functions
 // *****************************************************************************
 // *****************************************************************************
 
+
+ 
+void __ISR(_I2C1_MASTER_VECTOR, ipl4AUTO) _IntHandlerDrvI2CMasterInstance0(void)
+{
+	DRV_I2C0_Tasks();
+}
+
+
+void __ISR(_I2C1_BUS_VECTOR, ipl1AUTO) _IntHandlerDrvI2CErrorInstance0(void)
+{
+    /* TODO: Add code to process interrupt here */
+    /* Clear pending interrupt */
+    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_I2C_1_BUS);
+}
+
+     
+   
+
+ 
+ 
+ 
+
+ 
+
+
+
+
+  
 void __ISR(_UART1_TX_VECTOR, ipl5AUTO) _IntHandlerDrvUsartTransmitInstance0(void)
 {
     DRV_USART_TasksTransmit(sysObj.drvUsart0);
@@ -102,59 +131,18 @@ void __ISR(_UART6_FAULT_VECTOR, ipl7AUTO) _IntHandlerDrvUsartErrorInstance1(void
     DRV_USART_TasksError(sysObj.drvUsart1);
 }
 
-//FastTransfer_1 Transmitter UART module
-void __ISR(_UART4_TX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartTransmitInstance2(void)
-{
-    DRV_USART_TasksTransmit(sysObj.drvUsart2);
-}
-void __ISR(_UART4_RX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartReceiveInstance2(void)
-{
-    DRV_USART_TasksReceive(sysObj.drvUsart2);
-}
-void __ISR(_UART4_FAULT_VECTOR, ipl6AUTO) _IntHandlerDrvUsartErrorInstance2(void)
-{
-    DRV_USART_TasksError(sysObj.drvUsart2);
-} 
 
  
 
  
-void __ISR(_UART5_TX_VECTOR, ipl6AUTO) _IntHandlerDrvUsartTransmitInstance3(void)
-{
-    DRV_USART_TasksTransmit(sysObj.drvUsart3);
-}
-void __ISR(_UART5_RX_VECTOR, ipl0AUTO) _IntHandlerDrvUsartReceiveInstance3(void)
-{  
-    DRV_USART_TasksReceive(sysObj.drvUsart3);
-}
-void __ISR(_UART5_FAULT_VECTOR, ipl0AUTO) _IntHandlerDrvUsartErrorInstance3(void)
-{
-    DRV_USART_TasksError(sysObj.drvUsart3);
 
-}
  
  
 
  
-void __ISR(_UART3_TX_VECTOR, ipl5AUTO) _IntHandlerDrvUsartTransmitInstance4(void)
-{
-    DRV_USART_TasksTransmit(sysObj.drvUsart4);
-}
-void __ISR(_UART3_RX_VECTOR, ipl1AUTO) _IntHandlerDrvUsartReceiveInstance4(void)
-{
-    DRV_USART_TasksReceive(sysObj.drvUsart4);
-}
-void __ISR(_UART3_FAULT_VECTOR, ipl1AUTO) _IntHandlerDrvUsartErrorInstance4(void)
-{
-    DRV_USART_TasksError(sysObj.drvUsart4);
-}
  
 
      
-   
- 
- 
-
 void __ISR(_TIMER_2_VECTOR, ipl6AUTO) IntHandlerDrvTmrInstance0(void)
 {
     globalTimerTracker();
@@ -165,6 +153,15 @@ void __ISR(_TIMER_2_VECTOR, ipl6AUTO) IntHandlerDrvTmrInstance0(void)
     PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_4);
 }
  
+
+void __ISR(_CAN1_VECTOR, IPL1AUTO) _IntHandlerDrvCANInstance0(void)
+{
+    CAN_ISR_CALLBACK();
+    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_CAN_1);
+}
+
+
+
 /*******************************************************************************
  End of File
 */

@@ -40,6 +40,7 @@
 #include "timers.h"
 #include "lidarCalibrate.h"
 #include "Definitions.h"
+#include "MPU6050.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -97,17 +98,9 @@ timer_t lidar_runtime;
   Remarks:
     See prototype in app.h.
  */
-
-void APP_Initialize(void) {
-    /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT;
-    DRV_TMR0_Start();
-    DRV_TMR1_Start();
-    DRV_OC0_Start();
-    InitUARTModule(&LidarUart, UART_Lidar);
-    InitUARTModule(&LantronixUart, Lantronix);
-   // InitFastTransferModule(&LantronixFT, Lantronix, MY_ADDRESS, Send_put, Buffer_Get, Buffer_Size, Buffer_Peek);
-    setTimerInterval(&ms100,100);
+void LEDstartSequence()
+{
+     setTimerInterval(&ms100,100);
     LED1 = On;while(!timerDone(&ms100));
     LED2 = On;while(!timerDone(&ms100));
     LED3 = On;while(!timerDone(&ms100));
@@ -124,6 +117,18 @@ void APP_Initialize(void) {
     LED6 = Off;while(!timerDone(&ms100));
     LED7 = Off;while(!timerDone(&ms100));
     LED8 = Off;while(!timerDone(&ms100));
+}
+void APP_Initialize(void) {
+    /* Place the App state machine in its initial state. */
+    appData.state = APP_STATE_INIT;
+    DRV_TMR0_Start();
+    DRV_TMR1_Start();
+    DRV_OC0_Start();
+    InitUARTModule(&LidarUart, UART_Lidar);
+    InitUARTModule(&LantronixUart, Lantronix);
+    beginMPU(&MPU_1, MPU6050_SCALE_250DPS, MPU6050_RANGE_2G, MPU6050_Address_1);
+   // InitFastTransferModule(&LantronixFT, Lantronix, MY_ADDRESS, Send_put, Buffer_Get, Buffer_Size, Buffer_Peek);
+   LEDstartSequence();
     /* TODO: Initialize your application's state machine and other
      * parameters.
      */
@@ -189,7 +194,7 @@ void APP_Tasks(void) {
         case APP_STATE_LIDAR:
         {
             resetTimer(&lidar_runtime);
-            int obj[4];
+            point_t obj[4];
             int i;
             while (appData.state == APP_STATE_LIDAR) {
                 if (timerDone(&secondTimer)) {
@@ -197,15 +202,11 @@ void APP_Tasks(void) {
                     int num = runGroundObjectDetection(obj, sizeof(obj));
                     for(i = 0; i < num; i++)
                     {
-                        printf("obj%d: %d\n",i,obj[i]);
-                    }
-                    
+                        printf("obj%d: %d\n",i,obj[i].x);
+                    }                    
                 }
                 decode_LidarData();
-                
-                
             }
-
             break;
         }
         case FASTTRANS_TEST:
