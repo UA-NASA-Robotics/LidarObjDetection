@@ -51,6 +51,7 @@
         <itemPath>../src/bufferHandler.h</itemPath>
         <itemPath>../src/Definitions.h</itemPath>
         <itemPath>../src/MPU6050.h</itemPath>
+        <itemPath>../src/DataPublishing.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
@@ -208,6 +209,7 @@
         <itemPath>../src/timers.c</itemPath>
         <itemPath>../src/bufferHandler.c</itemPath>
         <itemPath>../src/MPU6050.c</itemPath>
+        <itemPath>../src/DataPublishing.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">

@@ -1,8 +1,6 @@
-build/default/debug/_ext/395284385/CAN.o:  \
-../src/CAN_Handler/CAN.c  \
- ../src/CAN_Handler/CAN.h  \
-../src/bufferHandler.h  \
- ../src/CAN_Handler/../../../../../framework/driver/can/drv_can.h  \
+build/default/production/_ext/337818580/drv_can_static.o:  \
+ ../src/system_config/default/framework/driver/can/src/drv_can_static.c  \
+ ../../../../framework/driver/can/drv_can.h  \
  ../src/system_config/default/system_config.h  \
  ../../../../framework/system/system.h  \
  ../../../../framework/system/common/sys_common.h  \
@@ -61,10 +59,24 @@ build/default/debug/_ext/395284385/CAN.o:  \
  ../../../../framework/peripheral/can/processor/../templates/can_TransmitErrorCountGet_Default.h  \
  ../../../../framework/peripheral/can/processor/../templates/can_ErrorStateGet_Default.h  \
  ../../../../framework/peripheral/can/processor/../templates/can_ModuleInformation_Default.h  \
- ../src/Definitions.h  \
-../src/CAN_Handler/GlobalCAN_IDs.h  \
-../src/Timers.h  \
- ../src/Definitions.h  \
-../src/app.h  \
-../src/CAN_Handler/CANFastTransfer.h  \
- ../src/CAN_Handler/CANbufferHandler.h 
+ ../src/system_config/default/framework/driver/can/drv_can_static.h  \
+ ../../../../framework/peripheral/int/plib_int.h  \
+ ../../../../framework/peripheral/int/processor/int_processor.h  \
+ ../../../../framework/peripheral/int/processor/int_p32xxxx.h  \
+ ../../../../framework/peripheral/int/plib_int_private_pic32.h  \
+ ../../../../framework/peripheral/int/processor/int_p32mz2048efh064.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_SingleVectorShadowSet_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_VectorSelect_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_ProximityTimerEnable_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_ProximityTimerControl_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_ExternalINTEdgeSelect_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_INTCPUPriority_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_INTCPUVector_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_SourceFlag_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_SourceControl_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_VectorPriority_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_CPUCurrentPriorityLevel_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_EnableControl_PIC32.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_ShadowRegisterAssign_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_VariableOffset_Default.h  \
+ ../../../../framework/peripheral/int/processor/../templates/int_SoftwareNMI_Default.h 

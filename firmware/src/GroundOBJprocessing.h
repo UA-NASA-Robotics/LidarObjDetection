@@ -8,6 +8,8 @@
 #ifndef GROUNDOBJPROCESSING_H
 #define	GROUNDOBJPROCESSING_H
 int runGroundObjectDetection(point_t *_objLoc, int _maxObjCount) ;
+int getObjectsCount();
+short getObject_1();
 void Set_GroundMaxRange();
 void Generate_GroundLookUpTable();
 

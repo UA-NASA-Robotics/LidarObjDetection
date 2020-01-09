@@ -128,7 +128,17 @@ int runGroundObjectDetection(point_t *_objLoc, int _maxObjCount) {
     }
     return objCount;
 }
-
+ point_t obj[4];
+int getObjectsCount()
+{
+    return runGroundObjectDetection(obj, sizeof(obj));
+}
+short getObject_1()
+{
+    getObjectsCount();
+    return ((obj[0].x << 8) |(obj[0].y));
+    
+}
 void Generate_GroundLookUpTable() {
     int _angle = 0;
     int quad = 0;

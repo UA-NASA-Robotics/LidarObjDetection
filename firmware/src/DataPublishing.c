@@ -6,7 +6,7 @@
 
 #define isINITbit   0
 #define DATA_ELEMENTS_COUNT 7
-timers_t dataPeriodTimer[DATA_ELEMENTS_COUNT];
+timer_t dataPeriodTimer[DATA_ELEMENTS_COUNT];
 int (*dataRetrievalFunc[DATA_ELEMENTS_COUNT])();
 
 void initGlobalData(GlobalDeviceData_t _index, int (*getFuncPointer)(void), unsigned long _interval) {
