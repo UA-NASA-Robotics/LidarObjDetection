@@ -1,3 +1,5 @@
 [submodule "LIdar-Controller/firmware/src/CAN_Handler"]
 	path = LIdar-Controller/firmware/src/CAN_Handler
 	url = https://github.com/UA-NASA-Robotics/CAN_Handler.git
+[submodule "firmware/src/CAN_Handler"]
+	url = https://github.com/UA-NASA-Robotics/CAN_Handler.git
