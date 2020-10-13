@@ -5,7 +5,7 @@
     <SystemStartScript dnOrder="1"/>
   </DisplayManager>
   <General>
-    <HarmonyPath dnOrder="0" path="../.."/>
+    <HarmonyPath dnOrder="0" path="../../../../../../microchip/harmony/v2_06"/>
     <Processor dnOrder="1" name="PIC32MZ2048EFH064"/>
     <Board dnOrder="2" name=""/>
     <ForceOptimization dnOrder="3" flag="true"/>
@@ -233,7 +233,7 @@
         <Name dnOrder="0">system_interrupt.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
         <Checksum dnOrder="2">60E9C82653BC964B31DCB025A6A5C733</Checksum>
-        <ProjectFileChecksum dnOrder="3">9E240DA2C6AE07DD40712E27A9102074</ProjectFileChecksum>
+        <ProjectFileChecksum dnOrder="3">23121BA37F39312AEE15ACA4FF1DA1DC</ProjectFileChecksum>
       </Template>
       <Template dnOrder="11">
         <Name dnOrder="0">drv_oc_mapping.c</Name>
@@ -244,12 +244,12 @@
         <Name dnOrder="0">drv_oc_static.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/driver/oc/src</Path>
         <Checksum dnOrder="2">09D7609A7EA33288A20425CF893AF91D</Checksum>
-        <ProjectFileChecksum dnOrder="3">C36AA07D15C2F747E165DA6556F81D2E</ProjectFileChecksum>
+        <ProjectFileChecksum dnOrder="3">E10567E7CE08DC99D4B9D153D5627FBC</ProjectFileChecksum>
       </Template>
       <Template dnOrder="13">
         <Name dnOrder="0">system_init.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">E150236D2A1A1DDC1B6B591399D5C54F</Checksum>
+        <Checksum dnOrder="2">AD3C2476FC2339BD3D011DC4B01D6A50</Checksum>
       </Template>
       <Template dnOrder="14">
         <Name dnOrder="0">drv_oc_static.h</Name>
@@ -302,7 +302,7 @@
       <Template dnOrder="24">
         <Name dnOrder="0">system_config.h</Name>
         <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">28F1A48A354BD41D2C5651B5DB58B41D</Checksum>
+        <Checksum dnOrder="2">62C75E7E3A446BC4EA9E5B62E2232D18</Checksum>
       </Template>
       <Template dnOrder="25">
         <Name dnOrder="0">app.h</Name>
@@ -326,15 +326,15 @@
     </Templates>
     <CompilerItems dnOrder="2">
       <C32 dnOrder="0">
-        <Include dnOrder="0" value="C:\microchip\harmony\v2_05_01\apps\Lidar-Controller\firmware\src"/>
-        <Include dnOrder="1" value="C:\microchip\harmony\v2_05_01\apps\Lidar-Controller\firmware\src\system_config\default"/>
-        <Include dnOrder="2" value="C:\microchip\harmony\v2_05_01\apps\Lidar-Controller\firmware\src\default"/>
-        <Include dnOrder="3" value="C:\microchip\harmony\v2_05_01\framework"/>
-        <Include dnOrder="4" value="C:\microchip\harmony\v2_05_01\apps\Lidar-Controller\firmware\src\system_config\default\framework"/>
+        <Include dnOrder="0" value="C:\Users\coolb\OneDrive\Documents\NasaRobotics\LidarObjDetection\firmware\src"/>
+        <Include dnOrder="1" value="C:\Users\coolb\OneDrive\Documents\NasaRobotics\LidarObjDetection\firmware\src\system_config\default"/>
+        <Include dnOrder="2" value="C:\Users\coolb\OneDrive\Documents\NasaRobotics\LidarObjDetection\firmware\src\default"/>
+        <Include dnOrder="3" value="C:\microchip\harmony\v2_06\framework"/>
+        <Include dnOrder="4" value="C:\Users\coolb\OneDrive\Documents\NasaRobotics\LidarObjDetection\firmware\src\system_config\default\framework"/>
       </C32>
     </CompilerItems>
     <Libraries dnOrder="3">
-      <Library dnOrder="0" value="../../../../bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a"/>
+      <Library dnOrder="0" value="../../../../../../../../microchip/harmony/v2_06/bin/framework/peripheral/PIC32MZ2048EFH064_peripherals.a"/>
     </Libraries>
   </Manifest>
 </Configuration>

@@ -24,10 +24,10 @@ unsigned long lastUpdateTime[185];
     
 
 /* Clearing each of the array elements of the
- * containing the distance measurments  */
+ * containing the distance measurements  */
 void clearLidarData(void) {
     int i = 0;
-    for (i = 0; i < 180; i++) {
+    for (i = 0; i < 180; ++i) {
         distanceReading[i] = 0;
     }
 }
@@ -103,7 +103,7 @@ void parse_dataBytes(unsigned short * _magReading, unsigned short * _qualityRead
         {
             //combining the high and low bits together into the _magReading array
             distanceReading[FinalIndex + inc] = concatenate_Packets(_data_packet[packetByteIndex], (_data_packet[packetByteIndex + 1] & CLEAN_UPPER_DISTANCE_BYTE_MASK));
-             //printf("Mag_%d: %d\n",FinalIndex + inc, _magReading[FinalIndex + inc]);
+             printf("Mag_%d: %d\n",FinalIndex + inc, _magReading[FinalIndex + inc]);
             _qualityReading[FinalIndex + inc] = concatenate_Packets(_data_packet[packetByteIndex + 2], (_data_packet[packetByteIndex + 3]));
 
                 //Store the last time the data got acquired correctly

@@ -122,8 +122,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
 // </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
-// </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_USART Initialization Data">
 
 const DRV_USART_INIT drvUsart0InitData =
@@ -211,7 +209,6 @@ void SYS_Initialize ( void* data )
     SYS_CLK_Initialize( NULL );
     SYS_DEVCON_Initialize(SYS_DEVCON_INDEX_0, (SYS_MODULE_INIT*)NULL);
     SYS_DEVCON_PerformanceConfig(SYS_CLK_SystemFrequencyGet());
-    SYS_PORTS_Initialize();
 
     /* Initialize Drivers */
     DRV_I2C0_Initialize();
@@ -242,6 +239,7 @@ void SYS_Initialize ( void* data )
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART6_FAULT, INT_SUBPRIORITY_LEVEL3);
 
     /* Initialize System Services */
+    SYS_PORTS_Initialize();
 
     /*** Interrupt Service Initialization Code ***/
     SYS_INT_Initialize();

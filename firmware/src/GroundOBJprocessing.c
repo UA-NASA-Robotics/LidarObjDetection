@@ -88,7 +88,7 @@ int runGroundObjectDetection(point_t *_objLoc, int _maxObjCount) {
     for (i = MIN_ANGLE; i < MAX_ANGLE; i++) {
         ranges[i - MIN_ANGLE] = (double) getDistanceReading(i) * sin(i * DEGREE_TO_RAD);
         xVal[i - MIN_ANGLE] = (double) i;
-       // printf("Range %d: %f \n", i, ranges[i - MIN_ANGLE]);
+        //printf("Range %d: %f \n", i, ranges[i - MIN_ANGLE]);
 
     }
     linreg(MAX_ANGLE - MIN_ANGLE, xVal, ranges, &m, &b, &r);
@@ -100,21 +100,21 @@ int runGroundObjectDetection(point_t *_objLoc, int _maxObjCount) {
     int objCenter;
     for (x = MIN_ANGLE; x < MAX_ANGLE; x++) {
         if ((fabs(((((double) x) * m) + b)) - ranges[x - MIN_ANGLE]) > THRESHOLD) {
-            //           printf("m: %.2f\t b: %.2f\t x: %d \t Range: %.2f \n", m, b, x, ranges[x - MIN_ANGLE]);
-            //           printf("Res: %f\n",fabs(((((double)x)*m) + b))-ranges[x - MIN_ANGLE] );
+                      //printf("m: %.2f\t b: %.2f\t x: %d \t Range: %.2f \n", m, b, x, ranges[x - MIN_ANGLE]);
+                       //printf("Res: %f\n",fabs(((((double)x)*m) + b))-ranges[x - MIN_ANGLE] );
             maxVal = fabs(fabs(((((double) x) * m) + b)) - ranges[x - MIN_ANGLE]);
             maxAng = x;
             /* Finding the edge of the object */
             if (startAng == 0) {
                 startAng = (int) maxAng;
-                printf("start; %d\n", startAng);
+                //printf("start; %d\n", startAng);
             }
         } else {
             /* found the other side of the object! */
             if (startAng != 0) {
                 objCenter = ((x - 1) + startAng) / 2;
                 //printf("end: %d\ncenter: %d\n", x - 1, objCenter);
-                printf("end: %d \n", x - 1);
+                //printf("end: %d \n", x - 1);
                 startAng = 0;
                 if( objCount <_maxObjCount ){
                     //printf("width: %d\n", Calculate_PointDistance((pointD) {(double)x,(((double)x*m) + b)}, (pointD){(double) startAng ,(((double)startAng * m) + b)}) );

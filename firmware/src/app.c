@@ -41,6 +41,7 @@
 #include "lidarCalibrate.h"
 #include "Definitions.h"
 #include "MPU6050.h"
+#include "GroundOBJprocessing.h"
 // *****************************************************************************
 // *****************************************************************************
 // Section: Global Data Definitions
@@ -161,6 +162,10 @@ void APP_Initialize(void) {
     See prototype in app.h.
  */
 
+//this is for testing the can transfer fucnttions
+int test_can(){
+    return 8;
+}
 
 void APP_Tasks(void) {
 
@@ -171,7 +176,9 @@ void APP_Tasks(void) {
         {
             DRV_OCO_Change_PulseWidth(1800);
             setTimerInterval(&secondTimer, 1000);
-
+            
+            //initGlobalData(DATA_2, test_can, 500);  to test the can code
+            
             initGlobalData(DATA_0, getObjectsCount, 500);
             initGlobalData(DATA_1, getObject_1(), 500);
             appData.state = APP_STATE_LIDAR;

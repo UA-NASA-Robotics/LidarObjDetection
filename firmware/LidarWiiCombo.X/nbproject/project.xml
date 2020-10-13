@@ -19,6 +19,8 @@
                 <sourceRootElem>..\src\system_config\default</sourceRootElem>
                 <sourceRootElem>C:/microchip/harmony/v2_05_01</sourceRootElem>
                 <sourceRootElem>../..</sourceRootElem>
+                <sourceRootElem>../../../../../../../../microchip/harmony/v2_06/apps/lidarobjectdetection/firmware/src/system_config/default/framework</sourceRootElem>
+                <sourceRootElem>../../../../../../microchip/harmony/v2_06</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

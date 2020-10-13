@@ -1,6 +1,6 @@
 #include "uart_Handler.h"
-
-#include "../../../../framework/driver/usart/drv_usart.h"
+#include "C:\microchip\harmony\v2_06\framework\driver\usart\drv_usart.h"
+//#include "../../../../framework/driver/usart/drv_usart.h"
 unsigned int UART_buff_modulo_inc(const unsigned int value, const unsigned int modulus);
 void RXEventHandler(const SYS_MODULE_INDEX index);
 void TXEventHandler(const SYS_MODULE_INDEX index);
